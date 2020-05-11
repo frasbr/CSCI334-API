@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 
 class Router {
     constructor(path) {

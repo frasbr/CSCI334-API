@@ -2,13 +2,14 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const responseGenerator = require("../util/responseGenerator");
+const Op = require("sequelize").Op;
 
 const registerUser = (userDetails) => {
     const { username, email, password, firstName, lastName } = userDetails;
 
     return User.findOne({
         // find a user that matches either the username OR the email address
-        where: { $or: { username, email } }
+        where: { [Op.or]: [{ username }, { email }] }
     }).then(async (user) => {
         if (user) {
             // These details are not unique so return a 401

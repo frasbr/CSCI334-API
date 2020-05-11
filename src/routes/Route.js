@@ -1,8 +1,8 @@
 class Route {
-    constructor(method, path, protected, callback) {
+    constructor(method, path, isPrivate, callback) {
         this.method = method;
         this.path = path;
-        this.protected = protected;
+        this.isPrivate = isPrivate;
         this.callback = callback;
     }
 
@@ -15,7 +15,7 @@ class Route {
     }
 
     isProtected() {
-        return this.protected;
+        return this.isPrivate;
     }
 
     getCallback() {

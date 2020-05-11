@@ -9,15 +9,15 @@ if (process.env.NODE_ENV !== "production") {
 // initialise express server
 const app = express();
 
+// middleware for buffering http response into js object
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // import routes for server to use
 const authRouter = require("./routes/auth");
 app.use(authRouter.getPath(), authRouter.getInstance());
 const userRouter = require("./routes/user");
 app.use(userRouter.getPath(), userRouter.getInstance());
-
-// middleware for buffering http response into js object
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 // connect to the database
 const db = require("./config/database");

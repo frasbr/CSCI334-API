@@ -13,6 +13,7 @@ const registerUser = new Route(
     "/register/user",
     false,
     async (req, res) => {
+        console.log("reqBody -> ", req.body);
         const { username, email, password, firstName, lastName } = req.body;
 
         // to do: implement input validation
