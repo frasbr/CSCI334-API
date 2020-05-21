@@ -4,8 +4,11 @@ const responseGenerator = require("../util/responseGenerator");
 const findAllUsers = async () => {
     try {
         const users = await User.findAll();
-        return responseGenerator(200, { data: users });
+        return responseGenerator(200, {
+            data: users
+        });
     } catch (err) {
+        console.log(err);
         return responseGenerator(500, {
             message: "Something went wrong"
         });
@@ -18,7 +21,7 @@ const findUserById = async (_id) => {
 
         if (!user) {
             return responseGenerator(404, {
-                message: `No users found for id: ${_id}`
+                message: `No users found with id: ${_id}`
             });
         }
 
@@ -66,8 +69,36 @@ const findUserByUsername = async (_username) => {
     }
 };
 
+const updateProfile = async (_id, _bio) => {
+    const user = await User.findOne({ id: _id });
+
+    if (!user) {
+        return responseGenerator(404, {
+            message: `No users found with id: ${_id}`
+        });
+    }
+
+    // assign new bio
+    user.bio = _bio;
+
+    try {
+        // update the record in the db
+        user.save();
+        return responseGenerator(200, {
+            success: true,
+            user
+        });
+    } catch (err) {
+        console.log(err);
+        return responseGenerator(500, {
+            message: "Something went wrong"
+        });
+    }
+};
+
 module.exports = {
     findAllUsers,
     findUserById,
-    findUserByUsername
+    findUserByUsername,
+    updateProfile
 };

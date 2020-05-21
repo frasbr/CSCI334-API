@@ -19,7 +19,9 @@ module.exports = (passport) => {
                         const userProfile = {
                             id: user.id,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            validated: user.validated,
+                            admin: user.isAdmin
                         };
                         return done(null, userProfile);
                     }

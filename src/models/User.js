@@ -35,7 +35,7 @@ const User = db.define(
         },
         createdAt: {
             type: DataTypes.DATE,
-            defaultValue: Sequelize.DATE,
+            defaultValue: Sequelize.NOW,
             field: "created_at",
             allowNull: false
         },
@@ -43,6 +43,26 @@ const User = db.define(
             type: DataTypes.DATE,
             field: "updated_at",
             allowNull: true
+        },
+        balance: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 10000
+        },
+        bio: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        validated: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
+        },
+        isAdmin: {
+            field: "is_admin",
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
     },
     {
