@@ -60,12 +60,11 @@ const login = async (username, password) => {
     const hash = bcrypt.hashSync(password);
 
     // Look up the user in the database
-
     try {
         const user = await User.findOne({
             where: {
                 hash,
-                [Op.$or]: [{ username }, { email: username }]
+                [Op.or]: [{ username }, { email: username }]
             }
         });
 
