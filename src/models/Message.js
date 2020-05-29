@@ -12,12 +12,18 @@ const Message = db.define("Message", {
     sender: {
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     receiver: {
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     message: {
         type: DataTypes.STRING,

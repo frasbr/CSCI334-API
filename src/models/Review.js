@@ -14,11 +14,17 @@ const Review = db.define("Review", {
         field: "tour_id",
         type: DataTypes.STRING,
         allowNull: false,
-        references: Tour.id
+        references: {
+            model: Tour,
+            key: "id"
+        }
     },
     reviewer: {
-        type: DataTypes.STRING,
-        references: User.id
+        type: DataTypes.UUID,
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     rating: {
         type: DataTypes.INTEGER,

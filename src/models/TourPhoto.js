@@ -10,8 +10,11 @@ const TourPhoto = db.define("TourPhoto", {
         primaryKey: true
     },
     tourId: {
-        type: DataTypes.STRING,
-        references: Tour.id,
+        type: DataTypes.UUID,
+        references: {
+            model: Tour,
+            key: "id"
+        },
         allowNull: false
     },
     url: {

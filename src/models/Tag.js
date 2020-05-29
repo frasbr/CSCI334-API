@@ -9,7 +9,10 @@ const Tag = db.define("Tag", {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
-        references: Tour.id
+        references: {
+            model: Tour,
+            key: "id"
+        }
     },
     tagName: {
         field: "tag_name",

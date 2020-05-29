@@ -13,13 +13,19 @@ const UserRating = db.define("UserRating", {
         field: "user_id",
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     guideId: {
         field: "guide_id",
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     rating: {
         type: DataTypes.INTEGER,

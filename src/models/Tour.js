@@ -29,7 +29,10 @@ const Tour = db.define("Tour", {
     guide: {
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     publishedAt: {
         type: DataTypes.DATE,

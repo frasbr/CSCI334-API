@@ -14,13 +14,19 @@ const Ticket = db.define("Ticket", {
         field: "issuer_id",
         type: DataTypes.STRING,
         allowNull: false,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     subjectId: {
         field: "subject_id",
         type: DataTypes.STRING,
         allowNull: true,
-        references: User.id
+        references: {
+            model: User,
+            key: "id"
+        }
     },
     category: {
         type: DataTypes.STRING,
@@ -33,7 +39,10 @@ const Ticket = db.define("Ticket", {
         field: "booking_id",
         type: DataTypes.STRING,
         allowNull: true,
-        references: Booking.id
+        references: {
+            model: Booking,
+            key: "id"
+        }
     },
     document: {
         type: DataTypes.STRING,

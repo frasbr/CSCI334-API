@@ -10,8 +10,11 @@ const TourSession = db.define("TourSession", {
         primaryKey: true
     },
     tourId: {
-        type: DataTypes.STRING,
-        references: Tour.id,
+        type: DataTypes.UUID,
+        references: {
+            model: Tour,
+            key: "id"
+        },
         field: "tour_id",
         allowNull: false
     },
