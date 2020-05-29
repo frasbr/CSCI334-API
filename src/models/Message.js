@@ -3,42 +3,48 @@ const { DataTypes } = Sequelize;
 const db = require("../config/database");
 const User = require("./User");
 
-const Message = db.define("Message", {
-    id: {
-        type: DataTypes.STRING,
-        primaryKey: true,
-        allowNull: false
-    },
-    sender: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        references: {
-            model: User,
-            key: "id"
+const Message = db.define(
+    "Message",
+    {
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true,
+            allowNull: false
+        },
+        sender: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: User,
+                key: "id"
+            }
+        },
+        receiver: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: User,
+                key: "id"
+            }
+        },
+        message: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        sentAt: {
+            field: "sent_at",
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         }
     },
-    receiver: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        references: {
-            model: User,
-            key: "id"
-        }
-    },
-    message: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    state: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    sentAt: {
-        field: "sent_at",
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
+    {
+        freezeTableName: true
     }
-});
+);
 
 module.exports = Message;

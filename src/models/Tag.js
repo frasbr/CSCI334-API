@@ -3,23 +3,29 @@ const { DataTypes } = Sequelize;
 const db = require("../config/database");
 const Tour = require("./Tour");
 
-const Tag = db.define("Tag", {
-    tourId: {
-        field: "tour_id",
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
-        references: {
-            model: Tour,
-            key: "id"
+const Tag = db.define(
+    "Tag",
+    {
+        tourId: {
+            field: "tour_id",
+            type: DataTypes.STRING,
+            allowNull: false,
+            primaryKey: true,
+            references: {
+                model: Tour,
+                key: "id"
+            }
+        },
+        tagName: {
+            field: "tag_name",
+            type: DataTypes.STRING,
+            allowNull: false,
+            primaryKey: true
         }
     },
-    tagName: {
-        field: "tag_name",
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true
+    {
+        freezeTableName: true
     }
-});
+);
 
 module.exports = Tag;
