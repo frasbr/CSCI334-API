@@ -5,14 +5,7 @@ const Route = require("./Route");
 const router = new Router("/tour");
 
 const createTour = new Route("post", "/create", true, async (req, res) => {
-    const {
-        title,
-        location,
-        description,
-        startTime,
-        finishTime,
-        price
-    } = req.body;
+    const { title, location, description, category, price } = req.body;
     const { id: guideId, validated } = req.user;
 
     if (!validated) {
@@ -25,9 +18,9 @@ const createTour = new Route("post", "/create", true, async (req, res) => {
         title,
         location,
         description,
-        startTime,
-        finishTime,
-        price
+        price,
+        cateogry,
+        guideId
     });
 
     return res.status(status).json(data);

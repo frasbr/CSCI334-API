@@ -74,7 +74,7 @@ const getTourById = async (_id) => {
     }
 };
 
-const updateTour = async (_tourProps, _tourId) => {
+const createTour = async (tourProps) => {
     const {
         title,
         location,
@@ -82,7 +82,39 @@ const updateTour = async (_tourProps, _tourId) => {
         category,
         price,
         guideId
-    } = _tourProps;
+    } = tourProps;
+
+    try {
+        const tour = Tour.build({
+            title,
+            location,
+            description,
+            category,
+            price,
+            guide: guideId
+        });
+
+        tour.save();
+        return responseGenerator(200, {
+            tour
+        });
+    } catch (err) {
+        console.log(err);
+        return responseGenerator(500, {
+            message: "Something went wrong"
+        });
+    }
+};
+
+const updateTour = async (tourProps, _tourId) => {
+    const {
+        title,
+        location,
+        description,
+        category,
+        price,
+        guideId
+    } = tourProps;
 
     try {
         const tour = await Tour.findOne({ id: _tourId });
@@ -349,6 +381,7 @@ module.exports = {
     getToursByTitle,
     getToursByLocation,
     getTourById,
+    createTour,
     updateTour,
     createSession,
     getTourSessions,
