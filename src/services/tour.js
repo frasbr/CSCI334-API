@@ -112,7 +112,7 @@ const updateTour = async (tourProps, _tourId) => {
     } = tourProps;
 
     try {
-        const tour = await Tour.findOne({ id: _tourId });
+        const tour = await Tour.findOne({ where: { id: _tourId } });
 
         // check if user is the owner of the tour
         if (tour.guide !== guideId) {
@@ -150,7 +150,7 @@ const createSession = async (_sessionProps) => {
     } = _sessionProps;
 
     try {
-        const tour = await Tour.findOne({ id: tourId });
+        const tour = await Tour.findOne({ where: { id: tourId } });
 
         if (!tour) {
             return responseGenerator(404, {
@@ -187,7 +187,9 @@ const createSession = async (_sessionProps) => {
 
 const getTourSessions = async (_tourId) => {
     try {
-        const sessions = await TourSession.findAll({ tourId: _tourId });
+        const sessions = await TourSession.findAll({
+            where: { tourId: _tourId }
+        });
         return responseGenerator(200, {
             sessions
         });
@@ -201,7 +203,9 @@ const getTourSessions = async (_tourId) => {
 
 const getSessionById = async (_sessionId) => {
     try {
-        const session = await TourSession.findOne({ id: _sessionId });
+        const session = await TourSession.findOne({
+            where: { id: _sessionId }
+        });
 
         if (!session) {
             return responseGenerator(404, {
@@ -258,7 +262,7 @@ const getSessionsByUser = async (_userId) => {
 const createBooking = async (bookingProps) => {
     const { userId, sessionId, offer } = bookingProps;
 
-    const session = await TourSession.findOne({ id: sessionId });
+    const session = await TourSession.findOne({ where: { id: sessionId } });
 
     if (!session) {
         return responseGenerator(404, {
@@ -341,7 +345,7 @@ const updateBooking = async (bookingProps) => {
 
         if (state === "confirmed") {
             const user = await User.findOne({
-                id: booking.userId
+                where: { id: booking.userId }
             });
 
             if (user.balance < booking.offer) {
