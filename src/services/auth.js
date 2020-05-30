@@ -88,7 +88,7 @@ const login = async (username, password) => {
         };
 
         const token = jwt.sign(payload, process.env.SECRET, {
-            expiresIn: 3600
+            expiresIn: 3600 * 24
         });
 
         return responseGenerator(200, {
