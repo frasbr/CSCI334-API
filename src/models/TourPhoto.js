@@ -29,7 +29,8 @@ const TourPhoto = db.define(
         }
     },
     {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     }
 );
 

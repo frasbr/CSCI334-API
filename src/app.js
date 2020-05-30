@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 // load variables from .env file into process.env
 if (process.env.NODE_ENV !== "production") {
@@ -10,14 +11,18 @@ if (process.env.NODE_ENV !== "production") {
 const app = express();
 
 // middleware for buffering http response into js object
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // import routes for server to use
 const authRouter = require("./routes/auth");
 app.use(authRouter.getPath(), authRouter.getInstance());
 const userRouter = require("./routes/user");
 app.use(userRouter.getPath(), userRouter.getInstance());
+const tourRouter = require("./routes/tour");
+app.use(tourRouter.getPath(), tourRouter.getInstance());
+const ticketRouter = require("./routes/ticket");
+app.use(ticketRouter.getPath(), ticketRouter.getInstance());
 
 // connect to the database
 const db = require("./config/database");

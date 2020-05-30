@@ -7,3 +7,5 @@ const router = new Router("/ticket");
 const createTicket = new Route("post", "/create", true, async (req, res) => {});
 
 router.registerRoute(createTicket);
+
+module.exports = router;

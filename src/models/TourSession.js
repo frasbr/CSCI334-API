@@ -40,7 +40,8 @@ const TourSession = db.define(
         }
     },
     {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     }
 );
 

@@ -63,7 +63,6 @@ const login = async (username, password) => {
     try {
         const user = await User.findOne({
             where: {
-                hash,
                 [Op.or]: [{ username }, { email: username }]
             }
         });
@@ -73,6 +72,13 @@ const login = async (username, password) => {
             return responseGenerator(401, {
                 message: "Incorrect username or password"
             });
+        } else {
+            // check the password
+            if (!bcrypt.compareSync(password, user.hash)) {
+                return responseGenerator(401, {
+                    message: "Incorrect username or password"
+                });
+            }
         }
 
         const payload = {

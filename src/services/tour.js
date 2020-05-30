@@ -75,17 +75,12 @@ const getTourById = async (_id) => {
 };
 
 const createTour = async (tourProps) => {
-    const {
-        title,
-        location,
-        description,
-        category,
-        price,
-        guideId
-    } = tourProps;
+    let { title, location, description, category, price, guideId } = tourProps;
+
+    price = price * 100;
 
     try {
-        const tour = Tour.build({
+        const tour = await Tour.build({
             title,
             location,
             description,

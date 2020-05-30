@@ -14,12 +14,12 @@ const createTour = new Route("post", "/create", true, async (req, res) => {
         });
     }
 
-    const { status, data } = tourService.createTour({
+    const { status, data } = await tourService.createTour({
         title,
         location,
         description,
         price,
-        cateogry,
+        category,
         guideId
     });
 

@@ -42,6 +42,17 @@ const Booking = db.define(
             validate: {
                 isIn: [["pending", "confirmed", "rejected"]]
             }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.NOW,
+            field: "created_at",
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            field: "updated_at",
+            allowNull: true
         }
     },
     {

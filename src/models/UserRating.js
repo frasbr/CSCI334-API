@@ -36,6 +36,17 @@ const UserRating = db.define(
                 min: 0,
                 max: 5
             }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.NOW,
+            field: "created_at",
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            field: "updated_at",
+            allowNull: true
         }
     },
     {

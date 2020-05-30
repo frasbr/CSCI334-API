@@ -24,7 +24,8 @@ const Tag = db.define(
         }
     },
     {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     }
 );
 

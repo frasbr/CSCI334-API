@@ -36,11 +36,16 @@ const Tour = db.define(
                 key: "id"
             }
         },
-        publishedAt: {
+        createdAt: {
             type: DataTypes.DATE,
-            allowNull: false,
-            field: "published_at",
-            defaultValue: Sequelize.NOW
+            defaultValue: Sequelize.NOW,
+            field: "created_at",
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            field: "updated_at",
+            allowNull: true
         },
         price: {
             type: DataTypes.INTEGER,

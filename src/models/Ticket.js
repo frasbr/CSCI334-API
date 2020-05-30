@@ -53,6 +53,17 @@ const Ticket = db.define(
         content: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.NOW,
+            field: "created_at",
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            field: "updated_at",
+            allowNull: true
         }
     },
     {
