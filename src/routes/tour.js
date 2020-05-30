@@ -61,18 +61,20 @@ router.registerRoute(updateTour);
 // ROUTE
 const createSession = new Route(
     "post",
-    "/session/create",
+    "/session/create/:tourId",
     true,
     async (req, res) => {
         const { id: userId } = req.user;
         const { startTime, finishTime, capacity, notes } = req.body;
+        const {tourId} = req.params;
 
         const { status, data } = await tourService.createSession({
             startTime,
             finishTime,
             capacity,
             notes,
-            userId
+            userId,
+            tourId
         });
         return res.status(status).json(data);
     }
