@@ -47,8 +47,6 @@ const TourSession = db.define(
     }
 );
 
-TourSession.associate = (models) => {
-    TourSession.hasMany(models.Booking, { as: "Bookings" });
-};
+TourSession.hasMany(Booking);
 
 module.exports = TourSession;

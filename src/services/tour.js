@@ -326,9 +326,11 @@ const updateBooking = async (bookingProps) => {
             include: [
                 {
                     model: TourSession,
+                    required: true,
                     include: [
                         {
                             model: Tour,
+                            required: true,
                             where: {
                                 guide: userId
                             }

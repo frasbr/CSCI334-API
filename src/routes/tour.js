@@ -136,7 +136,7 @@ const createBooking = new Route(
         const { status, data } = await tourService.createBooking({
             userId,
             sessionId,
-            offer
+            offer: offer * 100
         });
         return res.status(status).json(data);
     }

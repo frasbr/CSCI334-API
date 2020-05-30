@@ -60,8 +60,4 @@ const Booking = db.define(
     }
 );
 
-Booking.associate = (models) => {
-    Booking.belongsTo(models.TourSession, { foreignKey: "sessionId" });
-};
-
 module.exports = Booking;
