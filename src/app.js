@@ -23,6 +23,8 @@ const tourRouter = require("./routes/tour");
 app.use(tourRouter.getPath(), tourRouter.getInstance());
 const ticketRouter = require("./routes/ticket");
 app.use(ticketRouter.getPath(), ticketRouter.getInstance());
+const msgRouter = require("./routes/message");
+app.use(msgRouter.getPath(), msgRouter.getInstance());
 
 // connect to the database
 const db = require("./config/database");

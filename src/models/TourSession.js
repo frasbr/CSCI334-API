@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const { DataTypes } = Sequelize;
 const db = require("../config/database");
 const Tour = require("./Tour");
+const Booking = require("./Booking");
 
 const TourSession = db.define(
     "TourSession",
@@ -45,5 +46,9 @@ const TourSession = db.define(
         timestamps: false
     }
 );
+
+TourSession.hasMany(Booking, {
+    foreignKey: "sessionId"
+});
 
 module.exports = TourSession;
