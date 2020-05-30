@@ -162,4 +162,6 @@ const updateBooking = new Route(
     }
 );
 
+router.registerRoute(updateBooking);
+
 module.exports = router;
