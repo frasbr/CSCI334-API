@@ -32,9 +32,11 @@ const sendMessage = async (_sender, _receiver, _msg) => {
     }
 };
 
-const getInbox = (_receiver) => {
+const getInbox = async (_receiver) => {
     try {
-        const messages = await Message.findAll({ where: { recevier: _receiver } });
+        const messages = await Message.findAll({
+            where: { recevier: _receiver }
+        });
 
         return responseGenerator(200, {
             success: true,
@@ -44,9 +46,8 @@ const getInbox = (_receiver) => {
         console.log(err);
         return responseGenerator(500, {
             message: "Something went wrong"
-        })
+        });
     }
-    
 };
 
 module.exports = {
