@@ -36,14 +36,7 @@ const updateTour = new Route(
     "/update/:tourId",
     true,
     async (req, res) => {
-        const {
-            title,
-            location,
-            description,
-            startTime,
-            finishTime,
-            price
-        } = req.body;
+        const { title, location, description, category, price } = req.body;
         const { id: guideId } = req.user;
         const { tourId } = req.params;
 
@@ -52,8 +45,7 @@ const updateTour = new Route(
                 title,
                 location,
                 description,
-                startTime,
-                finishTime,
+                category,
                 price,
                 guideId
             },
