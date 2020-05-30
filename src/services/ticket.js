@@ -4,6 +4,9 @@ const responseGenerator = require("../util/responseGenerator");
 const createTicket = async (ticketProps) => {
     try {
         const ticket = await ticketFactory(ticketProps);
+        return responseGenerator(200, {
+            ticket
+        });
     } catch (err) {
         console.log(err);
         if (err.name !== "Error") {
