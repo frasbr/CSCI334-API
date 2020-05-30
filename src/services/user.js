@@ -17,7 +17,11 @@ const findAllUsers = async () => {
 
 const findUserById = async (_id) => {
     try {
-        const user = await User.findOne({ _id });
+        const user = await User.findOne({
+            where: {
+                id: _id
+            }
+        });
 
         if (!user) {
             return responseGenerator(404, {
@@ -70,7 +74,7 @@ const findUserByUsername = async (_username) => {
 };
 
 const updateProfile = async (_id, _bio) => {
-    const user = await User.findOne({ id: _id });
+    const user = await User.findOne({ where: { id: _id } });
 
     if (!user) {
         return responseGenerator(404, {
