@@ -7,9 +7,10 @@ const TourPhoto = db.define(
     "TourPhoto",
     {
         id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            primaryKey: true
+            type: DataTypes.UUID,
+            defaultValue: Sequelize.UUIDV4,
+            primaryKey: true,
+            allowNull: false
         },
         tourId: {
             type: DataTypes.UUID,

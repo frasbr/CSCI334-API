@@ -8,7 +8,8 @@ const Review = db.define(
     "Review",
     {
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
+            defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
             allowNull: false
         },

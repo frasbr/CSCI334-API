@@ -7,10 +7,10 @@ const TourSession = db.define(
     "TourSession",
     {
         id: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.UUID,
             defaultValue: Sequelize.UUIDV4,
-            primaryKey: true
+            primaryKey: true,
+            allowNull: false
         },
         tourId: {
             type: DataTypes.UUID,
