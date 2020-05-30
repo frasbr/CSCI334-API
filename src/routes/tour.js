@@ -40,7 +40,7 @@ const updateTour = new Route(
         const { id: guideId } = req.user;
         const { tourId } = req.params;
 
-        const { status, data } = tourService.updateTour(
+        const { status, data } = await tourService.updateTour(
             {
                 title,
                 location,
@@ -66,7 +66,7 @@ const createSession = new Route(
     async (req, res) => {
         const { id: userId } = req.user;
         const { startTime, finishTime, capacity, notes } = req.body;
-        const {tourId} = req.params;
+        const { tourId } = req.params;
 
         const { status, data } = await tourService.createSession({
             startTime,
