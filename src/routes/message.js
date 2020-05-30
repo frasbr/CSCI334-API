@@ -6,7 +6,7 @@ const router = new Router("/message");
 
 const getInbox = new Route("get", "/inbox", true, async (req, res) => {
     const { id } = req.user;
-    const { status, data } = await msgService.getIndex(id);
+    const { status, data } = await msgService.getInbox(id);
     return res.status(status).json(data);
 });
 

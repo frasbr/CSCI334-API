@@ -35,11 +35,10 @@ const sendMessage = async (_sender, _receiver, _msg) => {
 const getInbox = async (_receiver) => {
     try {
         const messages = await Message.findAll({
-            where: { recevier: _receiver }
+            where: { receiver: _receiver }
         });
 
         return responseGenerator(200, {
-            success: true,
             messages
         });
     } catch (err) {
