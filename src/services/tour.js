@@ -264,10 +264,6 @@ const createBooking = async (bookingProps) => {
 
     const session = await TourSession.findOne({ where: { id: sessionId } });
 
-    const session = await TourSession.findOne({
-        where: { id: _sessionId }
-    });
-
     if (!session) {
         return responseGenerator(404, {
             message: "Session not found"
