@@ -41,7 +41,6 @@ const getToursByTitle = async (_title) => {
 };
 
 const getToursByLocation = async (_location) => {
-    const loc = _location.toLowerCase();
     try {
         const tours = await Tour.findAll({
             where: {
