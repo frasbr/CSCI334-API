@@ -47,6 +47,4 @@ const TourSession = db.define(
     }
 );
 
-TourSession.hasMany(Booking);
-
 module.exports = TourSession;

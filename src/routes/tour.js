@@ -4,6 +4,7 @@ const Route = require("./Route");
 
 const router = new Router("/tour");
 
+// ROUTE
 const getAllTours = new Route("get", "/all", true, async (req, res) => {
     const { status, data } = await tourService.getAllTours();
     return res.status(status).json(data);
@@ -11,6 +12,7 @@ const getAllTours = new Route("get", "/all", true, async (req, res) => {
 
 router.registerRoute(getAllTours);
 
+// ROUTE
 const getToursByTitle = new Route(
     "get",
     "/byTitle/:title",
@@ -23,6 +25,20 @@ const getToursByTitle = new Route(
 );
 
 router.registerRoute(getToursByTitle);
+
+// ROUTE
+const getToursByLocation = new Route(
+    "get",
+    "/byLocation/:location",
+    true,
+    async (req, res) => {
+        const { location } = req.params;
+        const { status, data } = await tourService.getToursByLocation(location);
+        return res.status(status).json(data);
+    }
+);
+
+router.registerRoute(getToursByLocation);
 
 const createTour = new Route("post", "/create", true, async (req, res) => {
     const { title, location, description, category, price } = req.body;
@@ -172,6 +188,7 @@ const updateBooking = new Route(
     async (req, res) => {
         const { id: userId } = req.user;
         const { bookingId } = req.params;
+        console.log("bookingId", bookingId);
         const { state } = req.body;
         const { status, data } = await tourService.updateBooking({
             state,
@@ -183,5 +200,21 @@ const updateBooking = new Route(
 );
 
 router.registerRoute(updateBooking);
+
+// ROUTE
+const getBookingsBySession = new Route(
+    "get",
+    "/booking/bySession/:sessionId",
+    true,
+    async (req, res) => {
+        const { sessionId } = req.params;
+        const { status, data } = await tourService.getBookingsBySession(
+            sessionId
+        );
+        return res.status(status).json(data);
+    }
+);
+
+router.registerRoute(getBookingsBySession);
 
 module.exports = router;

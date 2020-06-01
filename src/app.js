@@ -48,6 +48,9 @@ db.authenticate()
         console.error(err);
     });
 
+// set up associations in sequelize
+require("./models/Associations")();
+
 // middleware for private route authorisation
 app.use(passport.initialize());
 // initialise JwtStrategy

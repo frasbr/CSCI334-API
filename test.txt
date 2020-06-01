@@ -1,0 +1,14 @@
+auth token:
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwYzc2MGY2LTk1N2QtNDBmZC1hMWVmLWU4MjBlYWZjZDIyYiIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpc0xvZ2luVG9rZW4iOnRydWUsImlhdCI6MTU5MDk4MDAzMywiZXhwIjoxNTkxMDY2NDMzfQ.5GGKnTt3i5rmvM_JeDd3tR8SOfu6HHfG9ZVEeBXRuwE
+
+testuser:
+40c760f6-957d-40fd-a1ef-e820eafcd22b
+
+Test Tour:
+25dd1b05-ecb3-4421-831c-e3b92dbca83b
+
+Session:
+5ab3db82-0f72-4c64-9c8f-d006565b357c
+
+Booking:
+a761c208-b38e-4c1b-acc2-124a53bcb271

@@ -41,11 +41,12 @@ const getToursByTitle = async (_title) => {
 };
 
 const getToursByLocation = async (_location) => {
+    const loc = _location.toLowerCase();
     try {
         const tours = await Tour.findAll({
             where: {
                 location: {
-                    [Op.like]: `%${_location}%`
+                    [Op.like]: `%${loc}%`
                 }
             }
         });
@@ -292,21 +293,32 @@ const createBooking = async (bookingProps) => {
 
 const getBookingsBySession = async (_sessionId) => {
     try {
-        const bookings = await Booking.findAll({
-            where: { sessionId: _sessionId },
+        const session = await TourSession.findAll({
+            where: { id: _sessionId },
             include: [
                 {
-                    model: TourSession
+                    model: Booking,
+                    required: true
                 }
-            ]
+            ],
+            attributes: {
+                exclude: [
+                    "id",
+                    "tourId",
+                    "startTime",
+                    "finishTime",
+                    "capacity",
+                    "notes"
+                ]
+            }
         });
-        if (!bookings) {
+        if (!session || session.length === 0) {
             return responseGenerator(404, {
                 message: "There are no bookings for this session"
             });
         }
         return responseGenerator(200, {
-            bookings
+            bookings: session[0].Bookings
         });
     } catch (err) {
         console.log(err);
@@ -319,7 +331,7 @@ const getBookingsBySession = async (_sessionId) => {
 const updateBooking = async (bookingProps) => {
     try {
         const { state, bookingId, userId } = bookingProps;
-        const booking = Booking.findOne({
+        const booking = await Booking.findOne({
             where: {
                 id: bookingId
             },
