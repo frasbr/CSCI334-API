@@ -18,14 +18,10 @@ router.registerRoute(getAllUsers);
 // @route   GET /current
 // @desc    Returns information about the user account currently logged in
 // @access  Protected
-const getCurrentUser = new Route("get", "/current", true, (req, res) => {
-    if (req.user) {
-        return res.status(200).json(req.user);
-    } else {
-        return res.status(404).json({
-            message: "User not found"
-        });
-    }
+const getCurrentUser = new Route("get", "/current", true, async (req, res) => {
+    const { id } = req.user;
+    const { status, data } = await userService.findUserById(id);
+    return res.status(status).json(data);
 });
 
 router.registerRoute(getCurrentUser);

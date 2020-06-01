@@ -274,7 +274,7 @@ const createBooking = async (bookingProps) => {
     const booking = Booking.build({
         sessionId,
         userId,
-        offer,
+        offer: offer * 100,
         state: "pending"
     });
 

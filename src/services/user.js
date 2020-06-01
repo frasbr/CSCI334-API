@@ -29,13 +29,8 @@ const findUserById = async (_id) => {
             });
         }
 
-        // return relevant information about user
-        const { username, firstName, lastName } = user;
-
         return responseGenerator(200, {
-            username,
-            firstName,
-            lastName
+            user
         });
     } catch (err) {
         return responseGenerator(500, {
