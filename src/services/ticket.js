@@ -29,9 +29,9 @@ const ticketFactory = async (ticketProps) => {
 
     switch (category.toLowerCase()) {
         case "verification":
-            return createVerificationTicket(ticketProps);
+            return await createVerificationTicket(ticketProps);
         case "tour":
-            return createTourTicket(ticketProps);
+            return await createTourTicket(ticketProps);
         default:
             throw new SyntaxError(
                 "SynatxError: `category` must be one of `tour` OR `verification`"
@@ -77,6 +77,21 @@ const createVerificationTicket = async (ticketProps) => {
     }
 };
 
+const getAllTickets = async () => {
+    try {
+        const tickets = awaitTicket.findAll();
+        return responseGenerator(200, {
+            tickets
+        });
+    } catch (err) {
+        console.log(err);
+        return responseGenerator(500, {
+            message: "Something went wrong"
+        });
+    }
+};
+
 module.exports = {
-    createTicket
+    createTicket,
+    getAllTickets
 };
