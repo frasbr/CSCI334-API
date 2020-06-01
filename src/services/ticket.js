@@ -1,4 +1,6 @@
 const Ticket = require("../models/Ticket");
+const User = require("../models/User");
+const Booking = require("../models/Booking");
 const responseGenerator = require("../util/responseGenerator");
 
 const createTicket = async (ticketProps) => {
@@ -91,7 +93,33 @@ const getAllTickets = async () => {
     }
 };
 
+const refundUser = async (ticketId) => {
+    try {
+        const ticket = await Ticket.findOne({ where: { id: ticketId } });
+        const booking = await Booking.findOne({
+            where: { id: ticket.bookingId }
+        });
+        const user = await User.findOne({ where: { id: booking.userId } });
+
+        booking.state = "rejected";
+        booking.save();
+
+        user.balance += booking.offer;
+        user.save();
+
+        return responseGenerator(200, {
+            message: `User ${user.username} has been refunded $${booking.offer}`
+        });
+    } catch (err) {
+        console.log(err);
+        return responseGenerator(500, {
+            message: "Something went wrong"
+        });
+    }
+};
+
 module.exports = {
     createTicket,
-    getAllTickets
+    getAllTickets,
+    refundUser
 };

@@ -34,4 +34,24 @@ const getTickets = new Route("get", "/all", true, async (req, res) => {
 
 router.registerRoute(getTickets);
 
+const refundUser = new Route(
+    "post",
+    "refund/:ticketId",
+    true,
+    async (req, res) => {
+        const { admin } = req.user;
+        if (!admin) {
+            return res.status(401).json({
+                message: "Unauthorised"
+            });
+        }
+
+        const { ticketId } = req.params;
+        const { status, data } = await ticketService.refundUser(ticketId);
+        return res.status(status).json(data);
+    }
+);
+
+router.registerRoute(refundUser);
+
 module.exports = router;
