@@ -36,7 +36,7 @@ router.registerRoute(getTickets);
 
 const refundUser = new Route(
     "post",
-    "refund/:ticketId",
+    "/refund/:ticketId",
     true,
     async (req, res) => {
         const { admin } = req.user;
