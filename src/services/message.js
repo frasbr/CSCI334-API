@@ -3,7 +3,7 @@ const Message = require("../models/Message");
 const responseGenerator = require("../util/responseGenerator");
 
 const sendMessage = async (_sender, _receiver, _msg) => {
-    const user = await User.findOne({ id: _receiver });
+    const user = await User.findOne({ where: { id: _receiver } });
 
     if (!user) {
         return responseGenerator(404, {
