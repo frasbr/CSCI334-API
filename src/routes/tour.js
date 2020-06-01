@@ -4,6 +4,26 @@ const Route = require("./Route");
 
 const router = new Router("/tour");
 
+const getAllTours = new Route("get", "/all", true, async (req, res) => {
+    const { status, data } = await tourService.getAllTours();
+    return res.status(status).json(data);
+});
+
+router.registerRoute(getAllTours);
+
+const getToursByTitle = new Route(
+    "get",
+    "/byTitle/:title",
+    true,
+    async (req, res) => {
+        const { title } = req.params;
+        const { status, data } = await tourService.getToursByTitle(title);
+        return res.status(status).json(data);
+    }
+);
+
+router.registerRoute(getToursByTitle);
+
 const createTour = new Route("post", "/create", true, async (req, res) => {
     const { title, location, description, category, price } = req.body;
     const { id: guideId, validated } = req.user;
