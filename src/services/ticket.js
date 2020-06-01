@@ -79,7 +79,7 @@ const createVerificationTicket = async (ticketProps) => {
 
 const getAllTickets = async () => {
     try {
-        const tickets = await awaitTicket.findAll();
+        const tickets = await Ticket.findAll();
         return responseGenerator(200, {
             tickets
         });
