@@ -27,6 +27,13 @@ const getToursByTitle = new Route(
 router.registerRoute(getToursByTitle);
 
 // ROUTE
+const getTourById = new Route("get", "/byId/:id", true, async (req, res) => {
+    const { id } = req.params;
+    const { status, data } = await tourService.getTourById(id);
+    return res.status(status).json(data);
+});
+
+// ROUTE
 const getToursByLocation = new Route(
     "get",
     "/byLocation/:location",
