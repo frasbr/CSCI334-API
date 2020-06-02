@@ -33,6 +33,8 @@ const getTourById = new Route("get", "/byId/:id", true, async (req, res) => {
     return res.status(status).json(data);
 });
 
+router.registerRoute(getTourById);
+
 // ROUTE
 const getToursByLocation = new Route(
     "get",
