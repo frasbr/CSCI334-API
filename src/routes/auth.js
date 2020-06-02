@@ -41,7 +41,7 @@ const login = new Route("post", "/login", false, async (req, res) => {
 
     // Validate input
     if (!username || !password) {
-        res.status(422).json({
+        return res.status(422).json({
             message: "Please enter a valid username and password"
         });
     }
