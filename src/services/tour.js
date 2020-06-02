@@ -62,7 +62,7 @@ const getToursByLocation = async (_location) => {
 
 const getTourById = async (_id) => {
     try {
-        const tour = await Tour.findOne({ id: _id });
+        const tour = await Tour.findOne({ where: { id: _id } });
         return responseGenerator(200, {
             tour
         });
