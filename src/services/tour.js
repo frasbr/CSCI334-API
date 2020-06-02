@@ -45,7 +45,7 @@ const getToursByLocation = async (_location) => {
         const tours = await Tour.findAll({
             where: {
                 location: {
-                    [Op.like]: `%${loc}%`
+                    [Op.like]: `%${_location}%`
                 }
             }
         });
