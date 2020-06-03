@@ -102,14 +102,9 @@ const createTour = async (tourProps) => {
 };
 
 const updateTour = async (tourProps, _tourId) => {
-    const {
-        title,
-        location,
-        description,
-        category,
-        price,
-        guideId
-    } = tourProps;
+    let { title, location, description, category, price, guideId } = tourProps;
+
+    price = price * 100;
 
     try {
         const tour = await Tour.findOne({ where: { id: _tourId } });

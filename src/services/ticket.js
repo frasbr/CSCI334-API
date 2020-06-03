@@ -95,6 +95,7 @@ const getAllTickets = async () => {
 const refundUser = async (ticketId) => {
     try {
         const ticket = await Ticket.findOne({ where: { id: ticketId } });
+        console.log(ticket.bookingId);
         const booking = await Booking.findOne({
             where: { id: ticket.bookingId }
         });
