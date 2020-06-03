@@ -235,17 +235,7 @@ const getSessionsByUser = async (_userId) => {
                         state: "confirmed"
                     }
                 }
-            ],
-            attributes: {
-                include: [
-                    Sequelize.col("TourSession.id"),
-                    Sequelize.col("TourSession.tourId"),
-                    Sequelize.col("TourSession.startTime"),
-                    Sequelize.col("TourSession.finishTime"),
-                    Sequelize.col("TourSession.capacity"),
-                    Sequelize.col("TourSession.notes")
-                ]
-            }
+            ]
         });
 
         return responseGenerator(200, {

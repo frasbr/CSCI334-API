@@ -66,12 +66,12 @@ const updateProfile = new Route(
 
         // check if the request is related to the users own profile
         if (userId !== id) {
-            res.status(401).json({
+            return res.status(401).json({
                 message: "You may only make changes to your own profile"
             });
         }
         const { bio } = req.body;
-        const { status, data } = await userService.updateProfile(bio);
+        const { status, data } = await userService.updateProfile(userId, bio);
         return res.status(status).json(data);
     }
 );
