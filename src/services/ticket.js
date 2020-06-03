@@ -42,12 +42,11 @@ const ticketFactory = async (ticketProps) => {
 };
 
 const createTourTicket = async (ticketProps) => {
-    const { issuerId, subjectId, bookingId, content } = ticketProps;
+    const { issuerId, bookingId, content } = ticketProps;
 
     try {
         const ticket = await Ticket.build({
             issuerId,
-            subjectId,
             bookingId,
             content,
             category: "tour"
