@@ -197,7 +197,6 @@ const updateBooking = new Route(
     async (req, res) => {
         const { id: userId } = req.user;
         const { bookingId } = req.params;
-        console.log("bookingId", bookingId);
         const { state } = req.body;
         const { status, data } = await tourService.updateBooking({
             state,
